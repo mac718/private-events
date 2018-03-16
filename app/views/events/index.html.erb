@@ -1,0 +1,8 @@
+<h1>Events</h1>
+
+<ol>
+  <% @events.each do |event| %>
+    <li>Description: <%= event.description %>, Created by: <%= event.creator.name %></li>
+  <% end %>
+</ol>
+

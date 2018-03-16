@@ -5,6 +5,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if session[:user_name]
+      session[:user_name] = nil
+    end
 
     if @user.save
       flash[:success] = 'Account created!'

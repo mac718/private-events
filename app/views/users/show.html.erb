@@ -1,2 +1,13 @@
-<h1><%= @user.name %></h1>
+<% unless flash.empty? %>
+  <%= flash[:success] %>
+<% end %>
 
+<h1><%= signed_in_user %></h1>
+
+<% if @user.events.any? %>
+  <ol>
+  <% @user.events.each do |event| %>
+    <li><%=event.title%>: <%=event.description%></li>
+  <% end %>
+</ol>
+<% end %>
