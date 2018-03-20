@@ -1,1 +1,16 @@
-<p>Description: <%=@event.description%>, Created by: <%= @event.creator.name %></p>
+<h2>Event title: <%= @event.title %></h2>
+<p><strong>Description</strong>: <%=@event.description%>, <strong>Created by</strong>: <%= @event.creator.name %></p>
+<% if @upcoming.include?(@event) %>
+  <p><%=link_to "Attend Event", "/events/#{@event.id}/event_attendances", method: :post  %></p>
+<% end %>
+
+<h3>Attending:</h3>
+<%# if EventAttendance.find_by(attendance_id: @event.id) %>
+<% if @event.attendees.any? %>
+  <ol>
+    <%# EventAttendance.where(attendance_id: @event.id).each do |event_attendance| %>
+    <% @event.attendees.each do |attendee| %>
+      <li><%= link_to "#{User.find(attendee.id).name}", user_path(attendee.id) %></li>
+    <% end %>
+  </ol>
+<% end %>

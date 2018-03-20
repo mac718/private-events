@@ -2,12 +2,22 @@
   <%= flash[:success] %>
 <% end %>
 
-<h1><%= signed_in_user %></h1>
+<h1><%= @user.name %></h1>
 
-<% if @user.events.any? %>
+<h2>Upcoming Events:</h2>
+<% if @upcoming_events %>
   <ol>
-  <% @user.events.each do |event| %>
-    <li><%=event.title%>: <%=event.description%></li>
-  <% end %>
-</ol>
+    <% @upcoming_events.each do |event| %>
+      <li><%= link_to "#{event.title}: #{event.description}", event_path(event.id) %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+<h2>Previously Attended Events:</h2>
+<%if @prev_events %>
+  <ol>
+    <% @prev_events.each do |event| %>
+      <li><%= link_to "#{event.title}: #{event.description}", event_path(event.id) %></li>
+    <% end %>
+  </ol>
 <% end %>

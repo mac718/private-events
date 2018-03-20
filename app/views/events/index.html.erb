@@ -1,8 +1,23 @@
 <h1>Events</h1>
 
-<ol>
-  <% @events.each do |event| %>
-    <li>Description: <%= event.description %>, Created by: <%= event.creator.name %></li>
-  <% end %>
-</ol>
+<h2>Upcoming Events:</h2>
+<% if @upcoming %>
+  <ol>
+    <% @upcoming.each do |event| %>
+      <li>
+        <%= link_to "#{event.title}: #{event.description}", event_path(event.id) %>  
+      </li>
+    <% end %>
+  </ol>
+<% end %>
 
+<h2>Past Events:</h2>
+<% if @past %>
+  <ol>
+    <% @past.each do |event| %>
+      <li>
+        <%= link_to "#{event.title}: #{event.description}", event_path(event.id) %> 
+      </li>
+    <% end %>
+  </ol>
+<% end %>

@@ -1,2 +1,11 @@
-<h1>Currently Signed In: <%= signed_in_user %></h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="navbar navbar-nav">
+    <li class="nav-item"><%= link_to 'Sign Up', signup_path, class: 'nav-link' %></li>
+    <li class="nav-item"><%= link_to 'Sign In', signin_path, class: 'nav-link' %></li>
+    <li class="nav-item"><%= link_to 'Events', events_path, class: 'nav-link' %></li>
+  </ul>
+  <span class="navbar-text ml-auto">
+    Currently Signed In: <%= link_to "#{signed_in_user}", user_path(User.find_by(name: signed_in_user).id) %>
+  </span>
+</nav>
 

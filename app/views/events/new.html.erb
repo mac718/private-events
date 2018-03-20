@@ -3,8 +3,17 @@
 <div class="row">
   <div class="col col-md-6 offset-md-3">
     <%= form_for @event do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>
+
+      <%= f.label :date %>
+      <%= f.text_field :date, class: 'form-control' %>
+
+      <%= f.label :location %>
+      <%= f.text_field :location, class: 'form-control' %>
 
       <%= f.submit class: 'btn btn-primary' %>
     <% end %>
