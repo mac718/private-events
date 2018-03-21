@@ -11,6 +11,4 @@ class User < ApplicationRecord
   def upcoming_events
     self.attendances.where('date > ?', Time.zone.now)
   end
-
-  
 end
