@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
   resources :users
   get '/signup', to: 'users#new'
   get '/signin', to: 'sessions#new'

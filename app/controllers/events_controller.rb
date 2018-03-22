@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    byebug
     @event = current_user.events.build(event_params)
 
     if @event.save

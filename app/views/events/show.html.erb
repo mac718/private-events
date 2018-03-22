@@ -1,7 +1,7 @@
 <h2>Event title: <%= @event.title %></h2>
 <p><strong>Description</strong>: <%=@event.description%>, <strong>Created by</strong>: <%= @event.creator.name %></p>
 <% if @upcoming.include?(@event) %>
-  <p><%=link_to "Attend Event", "/events/#{@event.id}/event_attendances", method: :post  %></p>
+  <p><%=link_to "Attend Event", event_event_attendances_path(@event.id), method: :post  %></p>
 <% end %>
 
 <h3>Attending:</h3>
