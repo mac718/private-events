@@ -6,6 +6,7 @@
     <% if signed_in_user %>
       <li class="nav-item"><%= link_to 'Create Event', new_event_path, class: 'nav-link' %></li>
     <% end %>
+    <li class="nav-item"><%= link_to 'Sign Out', signout_path, class: 'nav-link' %></li>
   </ul>
   <% if signed_in_user %>
     <span class="navbar-text ml-auto">

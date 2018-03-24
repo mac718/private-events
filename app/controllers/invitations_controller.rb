@@ -7,10 +7,8 @@ class InvitationsController < ApplicationController
     @invited_to_event = Event.find(params[:event_id])
     @invited_user = User.find_by(name: params[:invitation][:invitee_name])
     @invitation = Invitation.new(event_invited_to_id: @invited_to_event.id, invitee_id: @invited_user.id)
-    byebug
-
+    
     if @invitation.save
-      byebug
       redirect_to event_path(@invited_to_event.id)
     else 
       render 'events/index'
