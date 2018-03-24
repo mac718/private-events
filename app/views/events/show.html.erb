@@ -3,6 +3,14 @@
 <% if @upcoming.include?(@event) %>
   <p><%=link_to "Attend Event", event_event_attendances_path(@event.id), method: :post  %></p>
 <% end %>
+<% if @event.creator_id == User.find_by(name: signed_in_user).id %>
+  <%= form_for :invitation, url: event_invitations_path(@event.id) do |f| %>
+    <%= f.label :invitee_name, "Invite a guest (enter user's name):" %>
+    <%= f.text_field :invitee_name %>
+
+    <%= f.submit class: "btn btn-primary", id: 'invitation' %>
+  <% end %>
+<% end %>
 
 <h3>Attending:</h3>
 <%# if EventAttendance.find_by(attendance_id: @event.id) %>

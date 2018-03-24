@@ -7,10 +7,15 @@ class EventAttendancesController < ApplicationController
     @event = Event.find(params[:event_id])
     @attendance = EventAttendance.new(attendance_id: @event.id, attendee_id: @user.id)
 
-    if @attendance.save
-      redirect_to @event
+    if @event.invitees.include?(@user)
+      if @attendance.save
+        redirect_to @event
+      else
+        render :index
+      end
     else
-      render :index
+      flash[:danger] = "You can't attend an event unless you have an invitation!"
+      redirect_to @event
     end
   end
 
