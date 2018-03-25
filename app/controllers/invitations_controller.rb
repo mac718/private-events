@@ -9,8 +9,10 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(event_invited_to_id: @invited_to_event.id, invitee_id: @invited_user.id)
     
     if @invitation.save
+      flash[:success] = "Invitation sent!"
       redirect_to event_path(@invited_to_event.id)
     else 
+      flash.now[:warning] = "The invitation could not be created."
       render 'events/index'
     end
   end

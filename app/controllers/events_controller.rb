@@ -7,8 +7,10 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
 
     if @event.save
+      flash[:success] = "Event created!"
       redirect_to events_path
     else
+      flash.now[:warning] = "Uh oh, something went wrong."
       render :new
     end
   end
