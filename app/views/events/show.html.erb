@@ -1,8 +1,14 @@
 <h2>Event title: <%= @event.title %></h2>
 <p><strong>Description</strong>: <%=@event.description%>, <strong>Created by</strong>: <%= @event.creator.name %></p>
-<% if @upcoming.include?(@event) %>
+
+<% if @upcoming.include?(@event) && @event.creator != @signed_in_user &&  @event.invitees.include?(@signed_in_user) && !@event.attendees.include?(@signed_in_user) %>
+  
   <p><%=link_to "Attend Event", event_event_attendances_path(@event.id), method: :post  %></p>
+  
+<% else %>
+  <p>Request an invite</p>
 <% end %>
+
 <% if @event.creator_id == User.find_by(name: signed_in_user).id %>
   <%= form_for :invitation, url: event_invitations_path(@event.id) do |f| %>
     <%= f.label :invitee_name, "Invite a guest (enter user's name):" %>

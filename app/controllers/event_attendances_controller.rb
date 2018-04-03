@@ -9,7 +9,7 @@ class EventAttendancesController < ApplicationController
 
     if @event.invitees.include?(@user)
       if @attendance.save
-        flash[;success] = "You're on the guest list!"
+        flash[:success] = "You're on the guest list!"
         redirect_to @event
       else
         flash.now[:warning] = "Uh oh, something went wrong."

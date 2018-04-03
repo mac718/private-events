@@ -18,6 +18,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @upcoming = Event.upcoming
+    @signed_in_user = User.find_by(name: session[:user_name])
   end
 
   def index
