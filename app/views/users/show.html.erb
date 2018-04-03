@@ -2,11 +2,11 @@
 
 <h2>Created Events</h2>
   <% if @created_events %>
-  <ol>
-    <% @created_events.each do |event| %>
-      <li><%= link_to "#{event.title}: #{event.description}", event_path(event.id) %></li>
-    <% end %>
-  </ol>
+    <ol>
+      <% @created_events.each do |event| %>
+        <li><%= link_to "#{event.title}: #{event.description}", event_path(event.id) %></li>
+      <% end %>
+    </ol>
   <% end %>
 
 <h2>Upcoming Events:</h2>

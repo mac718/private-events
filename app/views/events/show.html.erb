@@ -1,10 +1,11 @@
 <h2>Event title: <%= @event.title %></h2>
 <p><strong>Description</strong>: <%=@event.description%>, <strong>Created by</strong>: <%= @event.creator.name %></p>
 
-<% if @upcoming.include?(@event) && @event.creator != @signed_in_user &&  @event.invitees.include?(@signed_in_user) && !@event.attendees.include?(@signed_in_user) %>
+<% if @upcoming.include?(@event) && @event.creator != @signed_in_user && 
+   @event.invitees.include?(@signed_in_user) && !@event.attendees.include?(@signed_in_user) %>
   
   <p><%=link_to "Attend Event", event_event_attendances_path(@event.id), method: :post  %></p>
-  
+
 <% else %>
   <p>Request an invite</p>
 <% end %>
@@ -19,10 +20,8 @@
 <% end %>
 
 <h3>Attending:</h3>
-<%# if EventAttendance.find_by(attendance_id: @event.id) %>
 <% if @event.attendees.any? %>
   <ol>
-    <%# EventAttendance.where(attendance_id: @event.id).each do |event_attendance| %>
     <% @event.attendees.each do |attendee| %>
       <li><%= link_to "#{User.find(attendee.id).name}", user_path(attendee.id) %></li>
     <% end %>

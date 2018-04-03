@@ -1,5 +1,4 @@
 class InvitationsController < ApplicationController
-  
 
   def create
     @inviter = User.find_by(name: session[:user_name])
@@ -19,4 +18,6 @@ class InvitationsController < ApplicationController
 
   def destroy
   end
+
 end
+
