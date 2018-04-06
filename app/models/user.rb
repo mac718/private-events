@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :attendances, :through => :event_attendances
   has_many :invitations, :foreign_key => :invitee_id
   has_many :invited_to_events, :through => :invitations
+  has_many :invitation_requests, :foreign_key => :requester_id
  
 
   def prev_events

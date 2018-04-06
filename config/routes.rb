@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :events do 
     resources :event_attendances
     resources :invitations
+    resources :invitation_requests
   end
 end

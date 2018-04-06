@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :attendees, :through => :event_attendances
   has_many :invitations, :foreign_key => :event_invited_to_id
   has_many :invitees, :through => :invitations
+  has_many :invitation_requests
   scope :upcoming, -> { where( 'date > ?', Time.zone.now ) }
   scope :past, -> { where( 'date < ?', Time.zone.now ) }
 end
