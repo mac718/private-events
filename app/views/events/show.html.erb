@@ -6,8 +6,11 @@
   
   <p><%=link_to "Attend Event", event_event_attendances_path(@event.id), method: :post  %></p>
 
-<% elsif @event.invitation_requests.where("requester_id = ?", @signed_in_user.id).empty? %>
+<% elsif @event.invitation_requests.where("requester_id = ?", @signed_in_user.id).empty? && 
+         !@signed_in_user.attendances.include?(@event) && @signed_in_user.id != @event.creator_id %>
+  
   <p><%= link_to "Request an invite", event_invitation_requests_path(@event.id), method: :post %></p>
+
 <% end %>
 
 <% if @event.creator_id == User.find_by(name: signed_in_user).id %>
@@ -32,13 +35,15 @@
   <h3>Invitation Requests:</h3>
   <ol>
     <% @event.invitation_requests.each do |request| %>
+      <% unless Invitation.where("invitee_id = ? AND event_invited_to_id = ?", request.requester_id, @event.id)[0] %>
       <li>
         <%= User.find(request.requester_id).name %>
         <%= form_for :invitation, url: event_invitations_path(@event.id) do |f| %>
           <%= f.hidden_field :invitee_name, value: User.find(request.requester_id).name %>
-          <%= f.submit "invite guest" %>
+          <%= f.submit "invite guest", class: "btn btn-primary" %>
         <% end %>
       </li>
+      <% end %>
     <% end %>
   </ol>
 <% end %>
