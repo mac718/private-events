@@ -1,5 +1,5 @@
 module SessionsHelper
   def signed_in_user
-    session[:user_name]
+    session[:user_id]
   end
 end

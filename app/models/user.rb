@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :invitations, :foreign_key => :invitee_id
   has_many :invited_to_events, :through => :invitations
   has_many :invitation_requests, :foreign_key => :requester_id
+  has_secure_password
  
 
   def prev_events
