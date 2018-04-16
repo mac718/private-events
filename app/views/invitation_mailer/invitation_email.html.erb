@@ -1,0 +1,4 @@
+<p>Hi, <%= @invitee.name %>!</p>
+
+<p>You've been invited to the following event: <%= @event.title %>!</p>
+<p>Click <%= link_to 'here', event_url(@event.id) %> to view the details and accept the invitation!</p>

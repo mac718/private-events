@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @upcoming = Event.upcoming
-    @signed_in_user = User.find_by(name: session[:user_name])
+    @signed_in_user = current_user
   end
 
   def index
@@ -34,6 +34,6 @@ class EventsController < ApplicationController
     end
 
     def current_user
-      User.find_by(name: session[:user_name])
+      User.find(session[:user_id])
     end
 end

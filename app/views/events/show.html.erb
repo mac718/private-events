@@ -13,7 +13,7 @@
 
 <% end %>
 
-<% if @event.creator_id == User.find_by(name: signed_in_user).id %>
+<% if @event.creator_id == signed_in_user %>
   <%= form_for :invitation, url: event_invitations_path(@event.id) do |f| %>
     <%= f.label :invitee_name, "Invite a guest (enter user's name):" %>
     <%= f.text_field :invitee_name %>
@@ -31,7 +31,7 @@
   </ol>
 <% end %>
 
-<% if @event.creator_id == User.find_by(name: signed_in_user).id %>
+<% if @event.creator_id == signed_in_user %>
   <h3>Invitation Requests:</h3>
   <ol>
     <% @event.invitation_requests.each do |request| %>
