@@ -1,0 +1,4 @@
+<p>Hi, <%= @event_creator.name %>!</p>
+
+<p>You've received an invitiation request for the following event: <%= @event.title %>!</p>
+<p>from <%= link_to "#{@requester.name}", user_url(@requester.id) %>. Click <%= link_to 'here', event_url(@event.id) %> to view the event details and send an invitation!</p>
