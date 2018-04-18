@@ -1,11 +1,11 @@
 <h2>Event title: <%= @event.title %></h2>
 <p><strong>Description</strong>: <%=@event.description%>, <strong>Created by</strong>: <%= @event.creator.name %></p>
 
-<% if event_attendable(@upcoming, @event, @signed_in_user) %>
+<% if event_attendable?(@upcoming, @event, @signed_in_user) %>
   
   <p><%=link_to "Attend Event", event_event_attendances_path(@event.id), method: :post  %></p>
 
-<% elsif invitation_requestable(@event, @signed_in_user) %>
+<% elsif invitation_requestable?(@event, @signed_in_user) %>
   
   <p><%= link_to "Request an invite", event_invitation_requests_path(@event.id), method: :post %></p>
 
