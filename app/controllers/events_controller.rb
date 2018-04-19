@@ -11,7 +11,7 @@ class EventsController < ApplicationController
       flash[:success] = "Event created!"
       redirect_to events_path
     else
-      flash.now[:warning] = "Uh oh, something went wrong."
+      #flash.now[:warning] = "Uh oh, something went wrong."
       render :new
     end
   end
