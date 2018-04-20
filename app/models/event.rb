@@ -8,7 +8,7 @@ class Event < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  VALID_DATE_REGEX = /(1|2)(9|0|1)\d{2}-(0|1|2|3)[0-9]-(0|1)[0-9]/
+  VALID_DATE_REGEX = /(19|20)[0-9][0-9]-(0|1)[0-9]-[0-3][0-9]/
   validates :date, presence: true, format: { with: VALID_DATE_REGEX }
   validates :location, presence: true
 
